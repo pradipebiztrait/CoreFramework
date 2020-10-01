@@ -1,0 +1,78 @@
+﻿@model List<RolePermission>
+
+@if (Model != null)
+{
+    <table class="table table-striped" id="table-role-permission">
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>View</th>
+                <th>Add</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @item.menu_title
+                </td>
+                <td>
+                    @{ 
+                        var check_view = item.menu_id + "_is_view";
+                        var is_checked_view = item.is_view == 1 ? "checked" : "";
+                    }
+                    <div class="form-group clearfix">
+                      <div class="icheck-primary d-inline">
+                        <input type="checkbox" id="@check_view" @is_checked_view>
+                        <label for="@check_view">
+                        </label>
+                      </div>
+                    </div>
+                </td>
+                <td>
+                    @{
+                        var check_add = item.menu_id + "_is_add";
+                        var is_checked_add = item.is_add == 1 ? "checked" : "";
+                    }
+                    <div class="form-group clearfix">
+                        <div class="icheck-primary d-inline">
+                            <input type="checkbox" id="@check_add" @is_checked_add>
+                            <label for="@check_add">
+                            </label>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    @{
+                        var check_edit = item.menu_id + "_is_edit";
+                        var is_checked_edit = item.is_edit == 1 ? "checked" : "";
+                    }
+                    <div class="form-group clearfix">
+                        <div class="icheck-primary d-inline">
+                            <input type="checkbox" id="@check_edit" @is_checked_edit>
+                            <label for="@check_edit">
+                            </label>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    @{
+                        var check_delete = item.menu_id + "_is_delete";
+                        var is_checked_delete = item.is_delete == 1 ? "checked" : "";
+                    }
+                    <div class="form-group clearfix">
+                        <div class="icheck-primary d-inline">
+                            <input type="checkbox" id="@check_delete" @is_checked_delete>
+                            <label for="@check_delete">
+                            </label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

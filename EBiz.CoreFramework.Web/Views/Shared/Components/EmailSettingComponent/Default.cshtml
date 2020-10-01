@@ -1,0 +1,151 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.SiteEmail
+
+<form method="post" id="form-emailsetting" autocomplete="off">
+    <input type="hidden" asp-for="site_email_id" value="@Model.site_email_id" id="hidden_site_email_id" />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label asp-for="server_name" class="control-label">Server<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <input asp-for="server_name" value="@Model.server_name" class="form-control" type="text" placeholder="Server Name" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="port_number" class="control-label">Port<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <input asp-for="port_number" value="@Model.port_number" class="form-control" type="text" placeholder="Port Number" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="sender" class="control-label">Sender<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <input asp-for="sender" value="@Model.sender" class="form-control" type="text" placeholder="Sender Email Address" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="password" class="control-label">Password<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input asp-for="password" value="@Model.password" class="form-control" type="password" placeholder="Password" />
+                        <div class="input-group-append">
+                            <span class="input-group-text password-showhide"><span class="trigger-password"><i class="fas fa-eye"></i></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 mt-3">
+                <div class="form-group">
+                    <div class="form-group clearfix">
+                        <div class="icheck-primary d-inline">
+                            <input type="checkbox" asp-for="is_status">
+                            <label asp-for="is_status">
+                                Mail deliver to receiver
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="receiver" class="control-label">Receiver</label>
+                <div class="form-group">
+                    <input asp-for="receiver" value="@Model.receiver" class="form-control" type="text" placeholder="Receiver Email Address" />
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <button type="button" class="btn btn-success wd-100" id="submit-emailsetting">Save</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+<script>
+
+    $(document).ready(function () {
+        $(".password-showhide .trigger-password").click(function () {
+            debugger;
+            var c = $(this).parent().attr("class").replace("-showhide", "");
+            var obj = $("#password");
+            obj.attr("type", obj.attr("type") == "text" ? "password" : "text");
+            $(this).html($(this).text() == '<i class="fas fa-eye-slash"></i>' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>');
+        });
+    });
+
+    emailSettingsValidator();
+    $('#submit-emailsetting').click(function () {
+        emailSettingsValidator();
+        $('#form-emailsetting').submit(function (ev) { ev.preventDefault(); });
+        $('#form-emailsetting').data('bootstrapValidator').validate();
+        var isValid = $('#form-emailsetting').data('bootstrapValidator').isValid();
+
+        if (isValid) {
+            var formData = new FormData();
+            var model = {
+                site_email_id: $('#hidden_site_email_id').val(),
+                server_name: $('#server_name').val(),
+                port_number: $('#port_number').val(),
+                sender: $('#sender').val(),
+                receiver: $('#receiver').val(),
+                password: $('#password').val(),
+                is_receiver: $("#is_status")[0].checked ? 1 : 0
+            };
+
+            formData.append("model", JSON.stringify(model));
+            formData.append("img", null);
+
+            $.ajax({
+                url: adminBaseUrl + "/Admin/Site/SaveEmailSettingsAsync",
+                type: "POST",
+                contentType: false,
+                data: formData,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.status) {
+                        toastr.success(response.message);
+                        $('#custom-tabs-one-mail').load(adminBaseUrl + "/Admin/Site/EmailSettingComponent");
+                    } else {
+                        toastr.error(response.message, "Error");
+                    }
+                    console.log(response);
+                }, error: function (jqXHR) {
+                    toastr.error(jqXHR.responseJSON.Message, "Error");
+                }
+            });
+        }
+    })
+
+    function emailSettingsValidator() {
+        $('#form-emailsetting').bootstrapValidator({
+            fields: {
+                server_name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Server is required.'
+                        }
+                    }
+                },
+                port_number: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Port is required.'
+                        }
+                    }
+                },
+                sender: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Sender is required.'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Password is required.'
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>

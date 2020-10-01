@@ -1,0 +1,85 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.Menu
+
+<form method="post" id="form-model">
+    <input type="hidden" asp-for="menu_id" value="@Model.menu_id" id="hidden_menu_id" />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+                <div class="floating-label-group">
+                    @{
+                        var disableParent = Model.parent_menu_id == 0 ? "disabled" : "";
+                    }
+
+                    <select class="form-control select2" style="width: 100%;" id="ddlParentMenuId" @disableParent>
+                        <option value="0" selected>Select Parent Menu</option>
+                        @if (Model.SubMenu != null)
+                        {
+                            foreach (var item in Model.SubMenu)
+                            {
+                                if (item.menu_id == Model.parent_menu_id)
+                                {
+                                    <option value="@item.menu_id" selected>@item.menu_title</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.menu_id">@item.menu_title</option>
+                                }
+
+                            }
+                        }
+                    </select>
+                    <label asp-for="menu_title" class="floating-label">Parent Menu</label>
+                </div>
+            </div>
+            <div class="col-md-12 mx-auto">
+                <div class="floating-label-group">
+                    <input asp-for="menu_title" value="@Model.menu_title" class="form-control" type="text" oninput="this.value=this.value.replace(/[^A-Za-z0-9\s]/g,'')" autofocus required />
+                    <label asp-for="menu_title" class="floating-label">Menu Title<span class="require_label">*</span></label>
+                </div>
+            </div>
+            <div class="col-md-12 mx-auto">
+                <div class="floating-label-group">
+                    <input type="text" class="form-control" asp-for="menu_url" autofocus required>
+                    <label for="PageTitle" class="floating-label">Menu Url<span class="require_label">*</span></label>
+                </div>
+            </div>
+            <div class="col-md-12 mx-auto">
+                <div class="floating-label-group">
+                    <input type="text" class="form-control" asp-for="menu_icon" autofocus required>
+                    <label for="PageTitle" class="floating-label">Menu Icon<span class="require_label">*</span></label>
+                </div>
+            </div>
+
+            <div class="col-md-12 mx-auto">
+                <div class="floating-label-group">
+                    <input type="text" class="form-control" asp-for="sort_order" oninput="this.value=this.value.replace(/[^0-9]/g,'')" maxlength="3" autofocus required>
+                    <label asp-for="sort_order" class="floating-label">Sort Order<span class="require_label">*</span></label>
+                </div>
+            </div>
+
+            <div class="col-12 mt-4">
+                @{
+                    var is_checked = Model.is_active == 1 ? "checked" : "";
+                }
+                <div class="form-group clearfix">
+                    <div class="icheck-primary d-inline">
+                        <input type="checkbox" id="is_status" @is_checked>
+                        <label for="is_status">
+                            Is Active ?
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</form>
+
+<script>
+    $(function () {
+        //Initialize Form Validation
+        FormModelValidator();
+        //Initialize Select2 Elements
+        $('.select2').select2()
+    })
+</script>

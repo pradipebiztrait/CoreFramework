@@ -1,0 +1,95 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.User
+
+<form method="post" id="form-model">
+    <input type="hidden" asp-for="UserId" value="@Model.UserId" id="hidden_UserId" />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+                <div class="floating-label-group">
+                    <select class="form-control select2" style="width: 100%;" id="ddlRoleId" name="role">
+                        <option value="" selected>Select Role</option>
+                        @if (Model.Roles != null)
+                        {
+                            foreach (var item in Model.Roles)
+                            {
+                                if (item.role_id == Model.RoleId)
+                                {
+                                    <option value="@item.role_id" selected>@item.role_name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.role_id">@item.role_name</option>
+                                }
+
+                            }
+                        }
+                    </select>
+                    <label class="floating-label">Role<span class="require_label">*</span></label>
+                </div>
+            </div>
+
+            <div class="col-md-6 mx-auto">
+                <div class="floating-label-group">
+                    <input type="text" class="form-control" asp-for="FirstName" value="@Model.FirstName" oninput="this.value=this.value.replace(/[^A-Za-z0-9\s]/g,'')" required autocomplete="off" />
+                    <label class="floating-label" asp-for="FirstName">First Name<span class="require_label">*</span></label>
+                </div>
+            </div>
+            <div class="col-md-6 mx-auto">
+                <div class="floating-label-group">
+                    <input type="text" class="form-control" asp-for="LastName" value="@Model.LastName" oninput="this.value=this.value.replace(/[^A-Za-z0-9\s]/g,'')" autofocus required />
+                    <label class="floating-label" asp-for="LastName">Last Name<span class="require_label">*</span></label>
+                </div>
+            </div>
+            <div class="col-md-12 mx-auto">
+                <div class="floating-label-group">
+                    <input asp-for="MobileNumber" value="@Model.MobileNumber" class="form-control" type="text" data-inputmask='"mask": "(999) 999-9999"' data-mask autofocus required />
+                    <label class="floating-label" asp-for="MobileNumber">Contact Number<span class="require_label">*</span></label>
+                </div>
+            </div>
+
+            @if (Model.UserId > 0)
+            {
+                <div class="col-md-12 mx-auto">
+                    <div class="floating-label-group">
+                        <label asp-for="EmailAddress" class="floating-label-fixed">Email Address<span class="require_label">*</span></label>
+                        <input value="@Model.EmailAddress" class="form-control focus-visible" type="text" readonly data-focus-visible-added required />
+
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-12 mx-auto">
+                    <div class="floating-label-group">
+                        <input asp-for="EmailAddress" value="@Model.EmailAddress" class="form-control" type="text" autofocus required />
+                        <label asp-for="EmailAddress" class="floating-label">Email Address<span class="require_label">*</span></label>
+                    </div>
+                </div>
+            }
+
+            @if (Model.UserId == 0)
+            {
+                <div class="col-md-12 mx-auto">
+                    <div class="floating-label-group">
+                        <input asp-for="Password" value="@Model.Password" class="form-control" type="password" autofocus required />
+                        <label asp-for="Password" class="floating-label">Password<span class="require_label">*</span></label>
+                    </div>
+                </div>
+                <div class="col-md-12 mx-auto">
+                    <div class="floating-label-group">
+                        <input id="ConfirmPassword" name="ConfirmPassword" class="form-control" type="password" autofocus required />
+                        <label for="ConfirmPassword" class="floating-label">Confirm Password<span class="require_label">*</span></label>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('[data-mask]').inputmask();
+        $('.select2').select2();
+    });
+</script>

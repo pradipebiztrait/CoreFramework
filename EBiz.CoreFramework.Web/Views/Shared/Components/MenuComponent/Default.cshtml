@@ -1,0 +1,78 @@
+﻿@model List<Menu>
+
+@{
+    var cunName = ViewContext.RouteData.Values["Controller"].ToString();
+
+    if (cunName == "site") {
+        cunName = "site settings";
+    }
+}
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                if (((EBiz.CoreFramework.DataAccess.Models.Menu)item).SubMenu.Count() > 0)
+                {
+                    bool ct = false;
+                    @foreach (var submenu in item.SubMenu)
+                    {
+                        ct = (cunName.ToLower() == submenu.menu_title.ToLower());
+                        if (ct) { break; }
+                    }
+                    <li class="nav-item has-treeview @(ct ? "menu-open" : "")">
+                        <a href="javascript:void(0);" class="nav-link">
+                            @if (!string.IsNullOrEmpty(item.menu_icon))
+                            {
+                                @Html.Raw(item.menu_icon)
+                            }
+                            else
+                            {
+                                <i class="far fa-circle nav-icon"></i>
+                            }
+                            &nbsp;
+                            <p>
+                                @item.menu_title
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            @foreach (var submenu in item.SubMenu)
+                            {
+                                var _urlSubmenu = LocalisationService.BaseUrl + "/Admin" + submenu.menu_url;
+                                <li class="nav-item">
+                                    <a href="@_urlSubmenu" class="nav-link @(cunName.ToLower() == submenu.menu_title.ToLower() ? "active" : "")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>@submenu.menu_title</p>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    var _url = LocalisationService.BaseUrl + "/Admin" + item.menu_url;
+                    <li class="nav-item">
+                        <a href="@_url" class="nav-link @(cunName.ToLower() == item.menu_title.ToLower() ? "active" : "")">
+                            @if (!string.IsNullOrEmpty(item.menu_icon))
+                            {
+                                @Html.Raw(item.menu_icon)
+                            }
+                            else
+                            {
+                                <i class="far fa-circle nav-icon"></i>
+                            }&nbsp;
+                            <p>
+                                @item.menu_title
+                            </p>
+                        </a>
+                    </li>
+                }
+            }
+        }
+    </ul>
+</nav>

@@ -1,0 +1,16 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.Roles
+
+<form method="post" id="form-model">
+    <input type="hidden" asp-for="role_id" value="@Model.role_id" id="hidden_role_id" />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 mx-auto">                
+                <div class="floating-label-group">
+                    <input asp-for="role_name" value="@Model.role_name" class="form-control" type="text" oninput="this.value=this.value.replace(/[^A-Za-z\s]/g,'')" required/>
+                    <label asp-for="role_name" class="floating-label">Role Name<span class="require_label">*</span></label>
+                </div>
+            </div>            
+        </div>
+        
+    </div>
+</form>

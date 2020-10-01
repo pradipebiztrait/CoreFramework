@@ -1,0 +1,141 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.RolePermission;
+@{
+    ViewData["Title"] = "Pages";
+    Layout = "_AdminLayout";
+}
+
+<!--Permissions-->
+<input type="hidden" id="hidden_is_edit" value="@Model.is_edit" />
+<input type="hidden" id="hidden_is_delete" value="@Model.is_delete" />
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Page</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">CMS</a></li>
+                    <li class="breadcrumb-item active">Page</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<main role="main" class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- /.card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Page List</h3>
+                        @if (Model.is_add == 1)
+                        {
+                            <div class="card-tools">
+                                <ul class="nav nav-pills ml-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="javascript:void(0);" onclick="ManagePageModal(0)"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Page</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="toolbar">
+                            <div id="toolbar">
+                                <button class="btn bg-gradient-warning mr-1" onclick="clearFilter()">
+                                    <i class="fa fa-filter"></i> Clear Filter
+                                </button>
+                                @if (Model.is_delete == 1)
+                                {
+                                    <button id="remove" class="btn bg-gradient-danger mr-1" disabled>
+                                        <i class="fa fa-trash"></i> Delete
+                                    </button>
+                                }
+
+                                </div>
+                        </div>
+                        <table id="table"
+                              data-toolbar="#toolbar"
+                               data-filter-control="true"
+                               data-show-fullscreen="true"
+                               data-toggle="table"
+                               data-ajax="ajaxRequest"
+                               data-search="true"
+                               data-click-to-select="true"
+                               data-side-pagination="server"
+                               data-pagination="true"
+                               data-pagination-pre-text="Previous"
+                               data-pagination-next-text="Next"
+                               data-export-types="['csv', 'excel', 'pdf']"
+                               data-page-list="[10, 25, 50, 100, 200, All]"
+                               data-page-size="10"
+                               data-id-field="pageId"
+                               data-response-handler="responseHandler"
+                               data-loading-template="<i class='fa fa-spinner fa-spin fa-fw fa-2x'></i>"
+                               >
+                            <thead>
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-sortable="true" data-field="pageTitle" data-width="300" data-filter-control="input" data-filter-control-placeholder="Search here...">Page Title</th>
+                                    <th data-sortable="true" data-field="pageUrl" data-width="300" data-filter-control="input" data-filter-control-placeholder="Search here...">Page Url</th>
+                                    @if(Model.is_edit == 1 || Model.is_delete == 1){
+                                        <th data-formatter="operateFormatter" data-click-to-select="false" data-width="50" data-align="center">Action</th>
+                                    }                                    
+                                </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+</main>
+
+<!--Delete Modal-->
+@await Component.InvokeAsync("DeleteModalComponent")
+
+<!--Delete Multiple Modal-->
+@await Component.InvokeAsync("DeleteMultipleModalComponent")
+
+<!--Add New Page Modal-->
+<div class="modal fade" id="modal-manage-page" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title" id="manage-modal-title">Add Page</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="page-form-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="SubmitForm()">Save</button>
+                <button type="button" class="btn btn-default" onclick="ResetForm()" id="btn-reset">Reset</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+@section scripts {
+    <script src="@LocalisationService.BaseUrl/scripts/admin/cms/cms.js?v=@DateTime.Now.Ticks"></script>
+}
+

@@ -1,0 +1,415 @@
+﻿@{
+    var adminBaseUrl = LocalisationService.BaseUrl.ToString();
+    DateTime now = DateTime.Today;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - @LocalisationService.SiteName</title>
+    <link href="@LocalisationService.BaseUrl/favicon/favicon.ico" rel="icon" type="image/png" sizes="32x32" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/jqvmap/jqvmap.min.css">
+    <!--BootstrapValidator-->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/jquery.bootstrapvalidator/css/bootstrapValidator.min.css" />
+    <!-- BootstrapTable -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/bootstrap-table/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/bootstrap-table/extensions/filter-control/bootstrap-table-filter-control.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link href="@LocalisationService.BaseUrl/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+
+    <!-- summernote -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/summernote/summernote-bs4.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/toastr/toastr.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    @*<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">*@
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif !important;
+        }
+    </style>
+    <!-- admin custom css -->
+    <link href="@LocalisationService.BaseUrl/css/admin-custom.css" rel="stylesheet" />
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                @*<li class="nav-item d-none d-sm-inline-block">
+                        <a href="index3.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>*@
+            </ul>
+            <!-- SEARCH FORM -->
+            @*<form class="form-inline ml-3">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>*@
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Messages Dropdown Menu -->
+                @*<li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-comments"></i>
+                            <span class="badge badge-danger navbar-badge">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <a href="#" class="dropdown-item">
+                                <!-- Message Start -->
+                                <div class="media">
+                                    <img src="@LocalisationService.BaseUrl/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            Brad Diesel
+                                            <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">Call me whenever you can...</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <!-- Message Start -->
+                                <div class="media">
+                                    <img src="@LocalisationService.BaseUrl/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            John Pierce
+                                            <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">I got your message bro</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <!-- Message Start -->
+                                <div class="media">
+                                    <img src="@LocalisationService.BaseUrl/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            Nora Silvester
+                                            <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">The subject goes here</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                        </div>
+                    </li>*@
+                <!-- Notifications Dropdown Menu -->
+                @*<li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-bell"></i>
+                            <span class="badge badge-warning navbar-badge">15</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <span class="dropdown-item dropdown-header">15 Notifications</span>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-envelope mr-2"></i> 4 new messages
+                                <span class="float-right text-muted text-sm">3 mins</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-users mr-2"></i> 8 friend requests
+                                <span class="float-right text-muted text-sm">12 hours</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-file mr-2"></i> 3 new reports
+                                <span class="float-right text-muted text-sm">2 days</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                        </div>
+                    </li>*@
+                @*<li class="nav-item dropdown">
+                    <a class="nav-link" href="/admin/Lockscreen" title="Lockscreen">
+                        <i class="fas fa-power-off"></i>
+                    </a>
+                </li>*@
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-user"></i>
+                        @*<span class="badge badge-warning navbar-badge">15</span>*@
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="javascript:void(0);" class="dropdown-item" style="pointer-events:none;">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="@Context.Session.GetString("_userImage").ToString()" alt="User Avatar" width="50" height="50" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        @Context.Session.GetString("_userName").ToString()
+                                        @*<span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>*@
+                                    </h3>
+                                    <p class="text-sm">Session Time</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        @*<a href="javascript:void(0);" class="dropdown-item bg-gradient-blue" style="text-decoration:none;">
+                                <div class="image">
+                                    <img src="@Context.Session.GetString("_userImage").ToString()" class="img-circle elevation-2" alt="User Image" width="35" height="35" onError="this.onerror=null;this.src='@LocalisationService.BaseUrl/img/default-user.svg'">
+
+                                    &nbsp; <span><strong>@Context.Session.GetString("_userName").ToString()</strong></span>
+                                </div>
+                            </a>*@
+                        <div class="dropdown-divider"></div>
+                        <a href="@LocalisationService.BaseUrl/Admin/Profile" class="dropdown-item">
+                            <i class="fas fa-user-edit mr-2"></i> Profile
+                            @*<span class="float-right text-muted text-sm">3 mins</span>*@
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="@LocalisationService.BaseUrl/Admin/ChangePassword" class="dropdown-item">
+                            <i class="fas fa-lock mr-2"></i> Change Password
+                            @*<span class="float-right text-muted text-sm">12 hours</span>*@
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="@LocalisationService.BaseUrl/Admin/Logout" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                            @*<span class="float-right text-muted text-sm">2 days</span>*@
+                        </a>
+                        @*<div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item dropdown-footer">Logout</a>*@
+                    </div>
+                </li>
+                @*<li class="nav-item">
+                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                            <i class="fas fa-th-large"></i>
+                        </a>
+                    </li>*@
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="javascript:void(0);" class="brand-link">
+                <img src="@LocalisationService.BaseUrl/dist/img/eBiz-logo.png" alt="CoreFramework" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-bold">eBizCore</span>
+            </a>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="@Context.Session.GetString("_userImage").ToString()" class="img-circle elevation-2" alt="User Image" onError="this.onerror=null;this.src='@LocalisationService.BaseUrl/img/default-user.svg'">
+                        </div>
+                        <div class="info">
+                            <a href="javascript:void(0);" class="d-block">@Context.Session.GetString("_userName").ToString()</a>
+                        </div>
+                    </div>*@
+                <!-- Sidebar Menu -->
+                @*@await Html.PartialAsync("_AdminMainMenu")*@
+                @await Component.InvokeAsync("MenuComponent")
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <div class="content-wrapper">
+            @*<!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Dashboard</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active">Dashboard</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <main role="main" class="content">
+                    <div class="container-fluid">
+
+                    </div>
+                </main>*@
+            @RenderBody()
+
+        </div>
+        <!--Start Show Session Expire Warning Popup here -->
+        <div class="modal fade" id="session-expire-warning-modal" aria-hidden="true" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-info">
+                        <h4 class="modal-title">Session Expire Warning</h4>
+                    </div>
+                    <div class="modal-body">
+                        Your session will expire in <strong>
+                            <span id="seconds-timer"></span>
+
+                        </strong> seconds. Do you want to extend the session?
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button id="btnOk" type="button" class="btn btn-info">Continue</button>
+                        @*<button id="btnSessionExpiredCancelled" type="button" class="btn btn-default" data-dismiss="modal" style="padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: normal; border: 1px solid transparent; border-radius: 4px; background-color: #428bca; color: #FFF;">Cancel</button>*@
+                        <button id="btnLogoutNow" type="button" class="btn btn-danger">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Show Session Expire Warning Popup here -->
+        <!--Start Show Session Expire Popup here -->
+        <div class="modal fade" id="session-expired-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Session Expired</h4>
+                    </div>
+                    <div class="modal-body">
+                        Your session is expired.
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnExpiredOk" onclick="sessionExpiredRedirect()" type="button" class="btn btn-primary">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; @now.ToString("yyyy") @LocalisationService.SiteName App· All Rights Reserved</strong>
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+    <!-- jQuery -->
+    <script src="@LocalisationService.BaseUrl/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="@LocalisationService.BaseUrl/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="@LocalisationService.BaseUrl/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--BootstrapValidator-->
+    <script src="@LocalisationService.BaseUrl/plugins/jquery.bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+    <!-- Select2 -->
+    <script src="@LocalisationService.BaseUrl/plugins/select2/js/select2.full.min.js"></script>
+    <!-- BootstrapTable -->
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    @*<script src="@LocalisationService.BaseUrl/plugins/TableExport/js/tableexport.min.js"></script>*@
+    <script src="@LocalisationService.BaseUrl/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="@LocalisationService.BaseUrl/plugins/bootstrap-table/locale/bootstrap-table-en-US.min.js"></script>
+    <script src="@LocalisationService.BaseUrl/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    @*<script src="@LocalisationService.BaseUrl/plugins/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>*@
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="@LocalisationService.BaseUrl/plugins/bootstrap-table/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+
+    <!-- ChartJS -->
+    <script src="@LocalisationService.BaseUrl/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="@LocalisationService.BaseUrl/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="@LocalisationService.BaseUrl/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="@LocalisationService.BaseUrl/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="@LocalisationService.BaseUrl/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="@LocalisationService.BaseUrl/plugins/moment/moment.min.js"></script>
+    <script src="@LocalisationService.BaseUrl/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="@LocalisationService.BaseUrl/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="@LocalisationService.BaseUrl/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="@LocalisationService.BaseUrl/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- Toastr -->
+    <script src="@LocalisationService.BaseUrl/plugins/toastr/toastr.min.js"></script>
+    <!-- InputMask -->
+    <script src="@LocalisationService.BaseUrl/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="@LocalisationService.BaseUrl/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="@LocalisationService.BaseUrl/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="@LocalisationService.BaseUrl/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="@LocalisationService.BaseUrl/dist/js/demo.js"></script>
+    <!-- Summernote -->
+    <script src="@LocalisationService.BaseUrl/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="@LocalisationService.BaseUrl/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!--jsPDF-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+    <!--Session Timeout-->
+    @*<script src="@LocalisationService.BaseUrl/plugins/session-timeout/sessionTimeout.js"></script>*@
+    <!--CounterJs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js"></script>
+    <script>
+        //initSessionMonitor();
+		$(document).ready(function () {
+			window.adminBaseUrl = "@LocalisationService.BaseUrl";
+			window.defaultImageUrl = window.adminBaseUrl + "/img/default-user-black.svg";
+			window.defaultEventUrl = window.adminBaseUrl + "/img/default-event.svg";
+			window.selectedLatitude = null;
+			window.selectedLongitude = null;
+			window.selectedAddress = null;
+        });
+        //var counter = 60;
+        //var timeout;
+        //document.onmousemove = function () {
+        //    clearTimeout(timeout);
+        //    timeout = setTimeout(function () { clearInterval(counter); }, 5000);
+        //}
+    </script>
+    @RenderSection("Scripts", required: true)
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.Pages
+<style>
+    .note-editor.note-frame, .note-editor.note-airframe {
+        border: 1px solid #ced4da;
+    }
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: 0rem;
+        box-shadow: none;
+    }
+</style>
+<form method="post" id="form-model">
+    <input type="hidden" asp-for="PageId" value="@Model.PageId" id="hidden_PageId" />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 mx-auto">                
+                <div class="floating-label-group">
+                    <input asp-for="PageTitle" value="@Model.PageTitle" class="form-control" type="text" autofocus required/>
+                    <label asp-for="PageTitle" class="floating-label">Page Title<span class="require_label">*</span></label>
+                </div>
+            </div>
+            <div class="col-md-12 mx-auto">
+                <div class="floating-label-group">
+                    <input asp-for="PageUrl" value="@Model.PageUrl" class="form-control" type="text" autofocus required />
+                    <label asp-for="PageUrl" class="floating-label">Page Url<span class="require_label">*</span></label>
+                </div>
+            </div>
+            <div class="col-12 mx-auto">
+                <div class="floating-label-group">
+                    <label for="PageTitle" class="floating-label-fixed">Content<span class="require_label">*</span></label>
+                    <textarea class="textarea" asp-for="PageDescription" placeholder="Place some text here" style="width:100%;height:500px;font-size:14px;line-height:18px;border:1px solid #dddddd;padding:10px;"></textarea>
+                </div>
+            </div>
+            <div class="col-12 mt-2">
+                @{
+                    var is_checked = Model.IsActive == 1 ? "checked" : "";
+                }
+                <div class="form-group clearfix">
+                    <div class="icheck-primary d-inline">
+                        <input type="checkbox" id="is_status" @is_checked>
+                        <label for="is_status"> Is Active ?
+                        </label>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+    </div>
+</form>
+<script>
+    $(function () { $('#PageDescription').summernote({ height: 250 }) })
+</script>

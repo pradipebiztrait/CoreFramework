@@ -1,0 +1,47 @@
+﻿@{
+	ViewData["Title"] = "Activation";
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Activation - @LocalisationService.SiteName</title>
+	<link href="@LocalisationService.BaseUrl/favicon/favicon.ico" rel="icon" type="image/png" sizes="32x32" />
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link href="@LocalisationService.BaseUrl/css/login-page.css" rel="stylesheet" />
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body class="login-body">
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+
+			<div class="mt-5 mb-2 m-5">
+				@if (TempData["ErrorMessage"] != null)
+				{
+					<strong class="text-danger">@TempData["ErrorMessage"]</strong>
+				}
+
+				@if (TempData["SuccessMessage"] != null)
+				{
+					<strong class="text-success">@TempData["SuccessMessage"]</strong>
+				}
+			</div>
+			<div class="mt-3 mb-5">
+				<img src="@LocalisationService.BaseUrl/img/logo.png" />
+			</div>
+			<div class="mt-5 mb-3">
+			</div>
+			<div id="formFooter">
+				<!-- Default to the left -->
+				<a class="underlineHover" href="@LocalisationService.BaseUrl">Login</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

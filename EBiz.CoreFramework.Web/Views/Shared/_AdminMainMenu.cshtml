@@ -1,0 +1,53 @@
+﻿@{
+    var cunName = ViewContext.RouteData.Values["Controller"].ToString();
+}
+@*<ul class="sidebar-menu" data-widget="tree">
+        <li class="nav-item @(cunName == "Dashboard" ? "active" : "")"><a href="@LocalisationService.BaseUrl/Admin/Dashboard"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a></li>
+        <li class="nav-item @(cunName == "SubAdmin" ? "active" : "")"><a href="@LocalisationService.BaseUrl/Admin/SubAdmin"><i class="fa fa-users"></i> <span>Staff Member</span></a></li>
+        <li class="nav-item @(cunName == "User" ? "active" : "")"><a href="@LocalisationService.BaseUrl/Admin/User"><i class="fa fa-users"></i> <span>Users</span></a></li>
+        <li class="nav-item @(cunName == "Cms" ? "active" : "")"><a href="@LocalisationService.BaseUrl/Admin/Cms"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>CMS</span></a></li>
+    </ul>*@
+
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+            <a href="@LocalisationService.BaseUrl/Admin/Dashboard" class="nav-link @(cunName == "Dashboard" ? "active" : "")">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
+                </p>
+            </a>
+        </li>
+        <li class="nav-item has-treeview @(cunName == "Cms" ? "menu-open" : "")">
+            <a href="javascript:void(0);" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                    CMS
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="@LocalisationService.BaseUrl/Admin/Cms" class="nav-link @(cunName == "Cms" ? "active" : "")">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Pages</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void(0);" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Menus</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="@LocalisationService.BaseUrl/Admin/User" class="nav-link @(cunName == "User" ? "active" : "")">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    Users
+                </p>
+            </a>
+        </li>
+    </ul>
+</nav>

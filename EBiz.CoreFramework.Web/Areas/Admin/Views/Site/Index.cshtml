@@ -1,0 +1,96 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.SiteSettingModel
+@{
+    ViewData["Title"] = "Site Settings";
+    Layout = "_AdminLayout";
+}
+
+<style>
+    .bootstrap-switch.bootstrap-switch-wrapper{
+        float:right !important;
+    }
+</style>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Site Settings</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                    <li class="breadcrumb-item active">Site Settings</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<main role="main" class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12">
+                @*<div class="card card-primary card-tabs">
+            <div class="card-header p-0 pt-1">
+                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist" style="padding-left: 5px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-one-mail-tab" data-toggle="pill" href="#custom-tabs-one-mail" role="tab" aria-controls="custom-tabs-one-mail" aria-selected="true" onclick="changeTab(1)">Mail</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-one-notification-tab" data-toggle="pill" href="#custom-tabs-one-notification" role="tab" aria-controls="custom-tabs-one-notification" aria-selected="false" onclick="changeTab(2)">Push Notification</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-one-awsproperty-tab" data-toggle="pill" href="#custom-tabs-one-awsproperty" role="tab" aria-controls="custom-tabs-one-awsproperty" aria-selected="false" onclick="changeTab(3)">AWS Properties</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="custom-tabs-one-tabContent">
+                    <div class="tab-pane fade show active" id="custom-tabs-one-mail" role="tabpanel" aria-labelledby="custom-tabs-one-mail-tab"></div>
+                    <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab"></div>
+                    <div class="tab-pane fade" id="custom-tabs-one-awsproperty" role="tabpanel" aria-labelledby="custom-tabs-one-awsproperty-tab"></div>
+                </div>
+            </div>
+        </div>*@
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Site Settings
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3 col-sm-3">
+                                @{ 
+                                    var emailActive = Model.is_emailsetting_active == 1 ? "checked" : "";
+                                    var notifyActive = Model.is_notification_active == 1 ? "checked" : "";
+                                }
+                                <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+                                    <a class="nav-link active" id="custom-tabs-one-mail-tab" data-toggle="pill" href="#custom-tabs-one-mail" role="tab" aria-controls="custom-tabs-one-mail" aria-selected="true" onclick="changeTab(1)">Email <input type="checkbox" name="email-switch" data-bootstrap-switch data-off-color="default" data-on-color="success" onchange="IsActiveEmail(this)" @emailActive></a>
+                                    <a class="nav-link" id="custom-tabs-one-notification-tab" data-toggle="pill" href="#custom-tabs-one-notification" role="tab" aria-controls="custom-tabs-one-notification" aria-selected="false" onclick="changeTab(2)">Push Notification <input type="checkbox" name="notify-switch" data-bootstrap-switch data-off-color="default" data-on-color="success" onchange="IsActiveNotification(this)" @notifyActive></a>
+                                    <a class="nav-link" id="custom-tabs-one-awsproperty-tab" data-toggle="pill" href="#custom-tabs-one-awsproperty" role="tab" aria-controls="custom-tabs-one-awsproperty" aria-selected="false" onclick="changeTab(3)">AWS Property </a>
+                                </div>
+                            </div>
+                            <div class="col-9 col-sm-9">
+                                <div class="tab-content" id="vert-tabs-tabContent">
+                                    <div class="tab-pane text-left fade show active" id="custom-tabs-one-mail" role="tabpanel" aria-labelledby="custom-tabs-one-mail-tab"></div>
+                                    <div class="tab-pane fade" id="custom-tabs-one-notification" role="tabpanel" aria-labelledby="custom-tabs-one-notification-tab"></div>
+                                    <div class="tab-pane fade" id="custom-tabs-one-awsproperty" role="tabpanel" aria-labelledby="custom-tabs-one-awsproperty-tab"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script src="@LocalisationService.BaseUrl/scripts/admin/sitesetting/sitesetting.js?v=@DateTime.Now.Ticks"></script>
+}
+

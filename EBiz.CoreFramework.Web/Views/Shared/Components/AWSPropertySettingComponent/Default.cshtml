@@ -1,0 +1,120 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.SiteAWSProperty
+
+<form method="post" id="form-awsproperty" autocomplete="off">
+    <input type="hidden" asp-for="aws_property_id" value="@Model.aws_property_id" id="hidden_aws_property_id" />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label asp-for="bucket_name" class="control-label">Bucket Name<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <input asp-for="bucket_name" value="@Model.bucket_name" class="form-control" type="text" placeholder="Bucket Name" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label asp-for="access_key" class="control-label">Access Key<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <input asp-for="access_key" value="@Model.access_key" class="form-control" type="text" placeholder="Access Key" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label asp-for="secret_key" class="control-label">Secret Key<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <input asp-for="secret_key" value="@Model.secret_key" class="form-control" type="text" placeholder="Secret Key" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label asp-for="base_url" class="control-label">Base Url<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <input asp-for="base_url" value="@Model.base_url" class="form-control" type="text" placeholder="Base Url" />
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <button type="button" class="btn btn-success wd-100" id="submit-awsproperty">Save</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+<script>
+
+    awspropertySettingsValidator();
+
+    $('#submit-awsproperty').click(function () {
+        awspropertySettingsValidator();
+        $('#form-awsproperty').submit(function (ev) { ev.preventDefault(); });
+        $('#form-awsproperty').data('bootstrapValidator').validate();
+        var isValid = $('#form-awsproperty').data('bootstrapValidator').isValid();
+
+        if (isValid) {
+            var formData = new FormData();
+            var model = {
+                aws_property_id: $('#hidden_aws_property_id').val(),
+                bucket_name: $('#bucket_name').val(),
+                access_key: $('#access_key').val(),
+                secret_key: $('#secret_key').val(),
+                base_url: $('#base_url').val(),
+            };
+
+            formData.append("model", JSON.stringify(model));
+            formData.append("img", null);
+
+            $.ajax({
+                url: adminBaseUrl + "/Admin/Site/SaveAWSPropertySettingsAsync",
+                type: "POST",
+                contentType: false,
+                data: formData,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.status) {
+                        toastr.success(response.message);
+                        $('#custom-tabs-one-awsproperty').load(adminBaseUrl + "/Admin/Site/AWSPropertySettingComponent");
+                    } else {
+                        toastr.error(response.message, "Error");
+                    }
+                    console.log(response);
+                }, error: function (jqXHR) {
+                    toastr.error(jqXHR.responseJSON.Message, "Error");
+                }
+            });
+        }
+    })
+
+    function awspropertySettingsValidator() {
+        $('#form-awsproperty').bootstrapValidator({
+            fields: {
+                bucket_name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Bucket Name is required.'
+                        }
+                    }
+                },
+                access_key: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Access Key is required.'
+                        }
+                    }
+                },
+                secret_key: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Secret Key is required.'
+                        }
+                    }
+                },
+                base_url: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Base Url is required.'
+                        },
+                        uri: {
+                            message: 'Invalid Base Url'
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>

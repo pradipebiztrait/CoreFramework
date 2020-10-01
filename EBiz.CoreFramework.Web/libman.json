@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "signalr.js@2.4.0",
+      "destination": "wwwroot/signalr.js/"
+    },
+    {
+      "library": "bootstrap-timepicker@0.5.2",
+      "destination": "wwwroot/lib/bootstrap-timepicker/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/jqueryui/"
+    },
+    {
+      "library": "datatables@1.10.19",
+      "destination": "wwwroot/lib/datatables/"
+    },
+    {
+      "library": "sweetalert@2.1.2",
+      "destination": "wwwroot/lib/sweetalert/"
+    },
+    {
+      "library": "bootstrap-sweetalert@1.0.1",
+      "destination": "wwwroot/lib/bootstrap-sweetalert/"
+    },
+    {
+      "library": "toastr.js@2.1.4",
+      "destination": "wwwroot/lib/toastr.js/"
+    },
+    {
+      "library": "bootstrap3-dialog@1.35.4",
+      "destination": "wwwroot/lib/bootstrap3-dialog/"
+    },
+    {
+      "library": "moment.js@2.24.0",
+      "destination": "wwwroot/moment.js/"
+    },
+    {
+      "library": "jquery-autocomplete@1.0.7",
+      "destination": "wwwroot/lib/jquery-autocomplete/"
+    },
+    {
+      "library": "slipjs@2.1.1",
+      "destination": "wwwroot/lib/slipjs/"
+    },
+    {
+      "library": "aspnet-signalr@1.1.4",
+      "destination": "wwwroot/lib/aspnet-signalr/"
+    },
+    {
+      "library": "bootstrap-toggle@2.2.2",
+      "destination": "wwwroot/js/bootstrap-toggle/"
+    },
+    {
+      "library": "bootstrap-table@1.17.1",
+      "destination": "wwwroot/plugins/bootstrap-table/"
+    },
+    {
+      "library": "TableExport@5.2.0",
+      "destination": "wwwroot/plugins/TableExport/"
+    },
+    {
+      "library": "jquery.bootstrapvalidator@0.5.3",
+      "destination": "wwwroot/plugins/jquery.bootstrapvalidator/"
+    },
+    {
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "wwwroot/plugins/bootstrap-datepicker/"
+    },
+    {
+      "library": "x-editable@1.5.1",
+      "destination": "wwwroot/plugins/x-editable/"
+    },
+    {
+      "library": "Counter-Up@1.0.0",
+      "destination": "wwwroot/plugins/Counter-Up/"
+    }
+  ]
+}

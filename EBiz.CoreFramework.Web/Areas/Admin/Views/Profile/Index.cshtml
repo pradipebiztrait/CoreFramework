@@ -1,0 +1,121 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.UserProfile
+@{
+    ViewData["Title"] = "Profile";
+}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Profile</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                @await Component.InvokeAsync("AlertComponent")
+            </div>
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header bg-primary">
+                        <h3 class="card-title">Edit Profile</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    @*<form asp-controller="Profile" asp-action="SaveProfile" method="post" id="profileForm" asp-area="Admin" enctype="multipart/form-data">*@
+                    <form method="post" id="form-model">
+                        <input type="hidden" asp-for="UserId" value="@Model.UserId" id="hidden_UserId" />
+                        <input type="hidden" asp-for="ImagePath" value="@Model.ImagePath" id="hidden_ImagePath" />
+                        <input type="hidden" asp-for="ImageName" value="@Model.ImageName" id="hidden_ImageName" />
+                        <input type="hidden" asp-for="Email" value="@Model.Email" />
+                        <div class="card-body">
+                            <div class="col-md-4 col-sm-6 col-lg-3">
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input type='file' asp-for="ImageFile" accept=".png, .jpg, .jpeg" />
+                                        <label for="ImageFile"><i class="fas fa-camera" style="padding: 13px;color: #008efd;"></i></label>
+                                    </div>
+                                    @{
+                                        var imageUrl = (Model != null && !string.IsNullOrEmpty(Model.ImagePath)) ? Model.ImagePath : LocalisationService.BaseUrl + "/img/disable_logo.svg";
+                                    }
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview" style="background-image: url(@imageUrl);">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto">
+                                            <div class="floating-label-group mt-5">
+                                                <label asp-for="Email" class="floating-label-fixed">Email Address<span class="require_label">*</span></label>
+                                                <input value="@Model.Email" class="form-control focus-visible" type="text" readonly data-focus-visible-added required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto">
+                                            <div class="floating-label-group">
+                                                <input asp-for="FirstName" class="form-control" maxlength="500" type="text" autofocus required />
+                                                <label asp-for="FirstName" class="floating-label">First Name<span class="require_label">*</span></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto">
+                                            <div class="floating-label-group">
+                                                <input asp-for="LastName" class="form-control" maxlength="500" type="text" autofocus required />
+                                                <label asp-for="LastName" class="floating-label">Last Name<span class="require_label">*</span></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto">
+                                            <div class="floating-label-group">
+                                                <input asp-for="MobileNumber" class="form-control" maxlength="15" type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'')" autofocus required />
+                                                <label asp-for="MobileNumber" class="floating-label">Mobile Number</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-success" onclick="SubmitForm()">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+@section scripts {
+    <script src="@LocalisationService.BaseUrl/scripts/admin/profile/profile.js?v=@DateTime.Now.Ticks" asp-append-version="true"></script>
+}

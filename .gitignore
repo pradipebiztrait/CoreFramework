@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/packages
+/EBiz.CoreFramework.Web/obj
+/EBiz.CoreFramework.Web/bin/Debug/netcoreapp2.2
+/EBiz.CoreFramework.DataAccess/obj/Debug
+/EBiz.CoreFramework.DataAccess/bin/Debug
+/EBiz.CoreFramework.Infrastructure/obj/Debug
+/EBiz.CoreFramework.Infrastructure/bin/Debug
+/EBiz.CoreFramework.Repository/obj/Debug
+/EBiz.CoreFramework.Repository/bin/Debug
+/EBiz.CoreFramework.Service/obj/Debug
+/EBiz.CoreFramework.Service/bin/Debug

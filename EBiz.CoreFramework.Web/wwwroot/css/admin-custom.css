@@ -1,0 +1,281 @@
+﻿a.btn-action-primary {
+    padding: 8px;
+    margin: 3px;
+    border: 1px solid #007bff !important;
+    border-radius: 50%;
+    color: #007bff;
+    cursor:pointer;
+}
+
+    a.btn-action-primary:hover {
+        color: #fff;
+        background-color: #007bff !important;
+    }
+
+a.btn-action-success {
+    padding: 8px;
+    margin: 3px;
+    border: 1px solid #28a745 !important;
+    border-radius: 50%;
+    color: #28a745;
+    cursor: pointer;
+}
+
+    a.btn-action-success:hover {
+        color: #fff;
+        background-color: #28a745 !important;
+    }
+
+
+a.btn-action-danger i{
+    margin: 2px;
+}
+
+a.btn-action-danger {
+    padding: 8px;
+    margin: 3px;
+    border: 1px solid #dc3545 !important;
+    border-radius: 50%;
+    color: #dc3545;
+    cursor: pointer;
+}
+
+    a.btn-action-danger:hover {
+        color: #fff;
+        background-color: #dc3545 !important;
+    }
+
+small.help-block {
+    color: #dc3545;
+    font-size: 14px;
+}
+
+.require_label {
+    margin-left: 2px;
+    color: #ff0000;
+}
+
+/*profile image avatar css*/
+
+.avatar-upload .avatar-edit {
+    position: absolute;
+    right: 20px;
+    z-index: 1;
+    top: 145px;
+}
+
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    /*margin: 20px auto 30px;*/
+}
+
+    .avatar-upload .avatar-edit input {
+        display: none;
+    }
+
+        .avatar-upload .avatar-edit input + label {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #fff;
+            border: 1px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .avatar-upload .avatar-edit input + label:hover {
+                background: #fff;
+                border-color: #d6d6d6;
+            }
+
+            .avatar-upload .avatar-edit input + label:after {
+                /*content: "\f030";*/
+                font-family: "FontAwesome";
+                color: #f0210a;
+                position: absolute;
+                top: 8px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                margin: auto;
+                font-size: 20px;
+            }
+
+    .avatar-upload .avatar-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 100%;
+        border: 8px solid #f4f6f9;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+
+        .avatar-upload .avatar-preview > div {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+/*end*/
+
+
+.select2-container .select2-selection--single {
+    height: auto !important;
+}
+
+.error-page > .error-content {
+    padding-top: 4% !important;
+}
+
+.error-page {
+    margin: 15% auto 0 !important;
+}
+
+.bootstrap-table.fullscreen {
+    padding: 10px !important;
+}
+
+.nav-tabs.flex-column .nav-item.show .nav-link, .nav-tabs.flex-column .nav-link.active {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.counter {
+    animation-duration: 1s;
+    animation-delay: 0s;
+}
+
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Floating form*/
+.floating-label-group {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+    .floating-label-group .floating-label {
+        font-size: 16px;
+        color: #808080;
+        position: absolute;
+        pointer-events: none;
+        top: 9px;
+        left: 0px;
+        -webkit-transition: all 0.1s ease;
+        transition: all 0.1s ease;
+        font-weight: 200 !important;
+    }
+
+    .floating-label-group input:focus ~ .floating-label,
+    .floating-label-group input:not(:focus):valid ~ .floating-label {
+        top: -15px;
+        bottom: 0px;
+        left: 0px;
+        font-size: 13px;
+        opacity: 1;
+        color: #80bdff;
+    }
+
+    .floating-label-group select:focus ~ .floating-label,
+    .floating-label-group select:not(:focus):valid ~ .floating-label {
+        top: -15px;
+        bottom: 0px;
+        left: 0px;
+        font-size: 13px;
+        opacity: 1;
+        color: #80bdff;
+    }
+
+    .floating-label-group .form-control {
+        border: none;
+        border-bottom: 1px solid #ced4da;
+        border-radius: 0;
+        padding: 0;
+    }
+
+.mx-auto {
+    margin-bottom: 5px;
+}
+
+.floating-label-group .select2-container--default .select2-selection--single {
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0px;
+}
+
+.floating-label-group .select2-container--default.select2-container--open .select2-selection--single {
+    border-color: transparent;
+    border-bottom: 1px solid #ced4da;
+}
+
+.floating-label-group .select2-container--default .select2-selection--single {
+    padding: .46875rem 0rem;
+}
+
+.floating-label-group .select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 0px;
+}
+
+.floating-label-fixed {
+    top: -15px;
+    bottom: 0px;
+    left: 0px;
+    font-size: 13px;
+    opacity: 1;
+    color: #80bdff;
+    font-weight: 100 !important;
+}
+/* end floating form*/
+
+
+.modal-header .close, .modal-header .mailbox-attachment-close {
+    padding: 0.5rem 1rem 0rem 0.5rem;
+    margin: -1rem -1rem -1rem auto;
+}
+.close, .mailbox-attachment-close {
+    float: right;
+    font-size: 2.5rem;
+    font-weight: 200;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 0px 0 #fff;
+    opacity: 1;
+}
+
+div.modal button:focus {
+    outline: 0px dotted;
+    outline: 0px auto -webkit-focus-ring-color;
+}
+
+.close, .mailbox-attachment-close span{
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+div.modal .modal-footer .btn {
+    min-width: 100px;
+}
+
+.card-footer .btn {
+    min-width: 100px;
+}
+
+.wd-100 {
+    min-width: 100px !important;
+}
+
+.modal-content{
+	border:0px !important;
+}

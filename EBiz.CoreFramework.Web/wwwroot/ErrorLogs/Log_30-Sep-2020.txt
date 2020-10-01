@@ -1,0 +1,70 @@
+-----------------------------------------------------------------
+DateTime           : 30-Sep-2020 07:12:58 PM
+System IP Address  : 192.168.1.5
+Request Url        : https://localhost:44358/Page/GetAllAsync
+
+Exception
+
+Message            : Table 'coreframework.pagess' doesn't exist
+
+Source             : MySql.Data
+
+StackTrace         :
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at Dapper.SqlMapper.QueryMultipleAsync(IDbConnection cnn, CommandDefinition command) in C:\projects\dapper\Dapper\SqlMapper.Async.cs:line 1050
+   at EBiz.CoreFramework.DataAccess.DapperService.GetMultipleAsync(String sp, DynamicParameters parms, CommandType commandType) in D:\Repositories\CoreFramework\EBiz.CoreFramework.DataAccess\Dapper\DapperService.cs:line 154
+   at EBiz.CoreFramework.Repository.Repositories.CmsRepository.GetAllPageByFilterAsync(FilterRequest request) in D:\Repositories\CoreFramework\EBiz.CoreFramework.Repository\Repositories\CmsRepository.cs:line 86
+   at EBiz.CoreFramework.Service.Services.CmsService.GetAllPageByFilterAsync(FilterRequest request) in D:\Repositories\CoreFramework\EBiz.CoreFramework.Service\Services\CmsService.cs:line 30
+   at EBiz.CoreFramework.Web.Areas.Admin.Controllers.PageController.GetAllAsync(FilterQuery request) in D:\Repositories\CoreFramework\EBiz.CoreFramework.Web\Areas\Admin\Controllers\PageController.cs:line 74
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+
+TargetSite         : MySql.Data.MySqlClient.MySqlPacket ReadPacket()
+
+-----------------------------------------------------------------
+DateTime           : 30-Sep-2020 07:17:16 PM
+System IP Address  : 192.168.1.5
+Request Url        : https://localhost:44358/Page/GetAllAsync
+
+Exception
+
+Message            : Table 'coreframework.pagess' doesn't exist
+
+Source             : MySql.Data
+
+StackTrace         :
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at Dapper.SqlMapper.QueryMultipleAsync(IDbConnection cnn, CommandDefinition command) in C:\projects\dapper\Dapper\SqlMapper.Async.cs:line 1050
+   at EBiz.CoreFramework.DataAccess.DapperService.GetMultipleAsync(String sp, DynamicParameters parms, CommandType commandType) in D:\Repositories\CoreFramework\EBiz.CoreFramework.DataAccess\Dapper\DapperService.cs:line 154
+   at EBiz.CoreFramework.Repository.Repositories.CmsRepository.GetAllPageByFilterAsync(FilterRequest request) in D:\Repositories\CoreFramework\EBiz.CoreFramework.Repository\Repositories\CmsRepository.cs:line 86
+   at EBiz.CoreFramework.Service.Services.CmsService.GetAllPageByFilterAsync(FilterRequest request) in D:\Repositories\CoreFramework\EBiz.CoreFramework.Service\Services\CmsService.cs:line 30
+   at EBiz.CoreFramework.Web.Areas.Admin.Controllers.PageController.GetAllAsync(FilterQuery request) in D:\Repositories\CoreFramework\EBiz.CoreFramework.Web\Areas\Admin\Controllers\PageController.cs:line 74
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+
+TargetSite         : MySql.Data.MySqlClient.MySqlPacket ReadPacket()
+

@@ -1,0 +1,99 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.ChangePassword
+@{
+    ViewData["Title"] = "Change Password";
+}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Change Password</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                    <li class="breadcrumb-item active">Change Password</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                @await Component.InvokeAsync("AlertComponent")
+            </div>
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header bg-primary">
+                        <h3 class="card-title">Change Password</h3>
+                    </div>
+                    
+                    <form asp-controller="ChangePassword" asp-action="Index" method="post" id="changePasswordForm" asp-area="Admin">
+                        <div class="card-body">
+                            <input type="hidden" asp-for="UserName" class="form-control" maxlength="200" value="@Model.UserName" />
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6 mx-auto">                                        
+                                        <div class="floating-label-group">
+                                            <input asp-for="Password" class="form-control" maxlength="500" type="password" required />
+                                            <label asp-for="Password" class="floating-label">Password<span class="require_label">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="row">
+                                    <div class="col-md-6 mx-auto">                                        
+                                        <div class="floating-label-group">
+                                            <input asp-for="ConfirmPassword" class="form-control" maxlength="500" type="password" required />
+                                            <label asp-for="ConfirmPassword" class="floating-label">Confirm Password<span class="require_label">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4 text-left">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-success" onclick="SubmitChangePassword()">Save</button>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-default" onclick="ResetForm()">Reset</button>&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 text-right">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                    <!-- /.card -->
+                </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+@section scripts {
+    <script src="@LocalisationService.BaseUrl/scripts/admin/changepassword/change-password.js?v=@DateTime.Now.Ticks"></script>
+    @*@if (alertMessage != null && alertMessage != "")
+        {
+            if (alertClass == "alert-success")
+            {
+                <script>toastr.success("@alertMessage", "Success");</script>
+            }
+            else
+            {
+                <script>toastr.error("@alertMessage", "Error");</script>
+            }
+        }*@
+}

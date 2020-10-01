@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <StartupObject></StartupObject>
+    <ApplicationIcon />
+    <Win32Resource />
+    <TypeScriptToolsVersion>3.7</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.ServiceRegistration.Dynamic" Version="1.2.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.111.14" />
+    <PackageReference Include="BundlerMinifier.Core" Version="3.2.447" />
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.0" />
+    <PackageReference Include="Google.Apis.Analytics.v3" Version="1.43.0.1720" />
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.45.0.1928" />
+    <PackageReference Include="MailKit" Version="2.7.0" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="MySql.Data" Version="8.0.18" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.18" />
+    <PackageReference Include="RestSharp" Version="106.11.5-alpha.0.2" />
+    <PackageReference Include="Scrutor" Version="3.1.0" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0-preview.5.20278.1" />
+    <PackageReference Include="Twilio" Version="5.35.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\User\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\Templates\ForgotPassword.html" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\EBiz.CoreFramework.DataAccess\EBiz.CoreFramework.DataAccess.csproj" />
+    <ProjectReference Include="..\EBiz.CoreFramework.Infrastructure\EBiz.CoreFramework.Infrastructure.csproj" />
+    <ProjectReference Include="..\EBiz.CoreFramework.Repository\EBiz.CoreFramework.Repository.csproj" />
+    <ProjectReference Include="..\EBiz.CoreFramework.Service\EBiz.CoreFramework.Service.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="quickstart-1588219910398-f03e48442a41.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

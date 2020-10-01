@@ -1,0 +1,113 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.AdminLogin
+@using EBiz.CoreFramework.Infrastructure.Helper
+@{
+	ViewData["Title"] = "Login";
+	Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login - @LocalisationService.SiteName</title>
+    <link href="@LocalisationService.BaseUrl/favicon/favicon.ico" rel="icon" type="image/png" sizes="32x32" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/fontawesome-free/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="@LocalisationService.BaseUrl/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    @*<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">*@
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif !important;
+        }
+    </style>
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="javascript:void(0);"><span class="font-weight-bold">eBiz</span>Core</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="callout callout-danger">
+                        <p><i class="fas fa-times-circle text-danger"></i>&nbsp;@TempData["ErrorMessage"]</p>
+                    </div>
+                }
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="callout callout-success">
+                        <p><i class="fas fa-check-circle text-success"></i>&nbsp;@TempData["SuccessMessage"]</p>
+                    </div>
+                }
+                <form asp-area="Admin" asp-controller="Login" asp-action="Index" id="loginForm" method="post">
+                    <div class="input-group mb-3">
+                        <input type="email" id="Email" name="Email" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12 mt-2">
+                            <button type="submit" class="btn btn-success btn-block">Sign In</button>
+                        </div>
+
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="javascript:void(0);" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="javascript:void(0);" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
+                </div>
+                <!-- /.social-auth-links -->
+                <p class="mb-1 text-center">
+                    <a href="@LocalisationService.BaseUrl/Admin/ForgotPassword">I forgot my password</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="@LocalisationService.BaseUrl/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="@LocalisationService.BaseUrl/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="@LocalisationService.BaseUrl/dist/js/adminlte.min.js"></script>
+</body>
+</html>

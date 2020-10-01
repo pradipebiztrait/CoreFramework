@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewData["Title"] = "Staff";
+    Layout = "_AdminLayout";
+}
+<style>
+    .fht-cell {
+        height: 42px;
+    }
+</style>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Staff</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                    <li class="breadcrumb-item active">Staff</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<main role="main" class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- /.card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Staff List</h3>
+                        <div class="card-tools">
+                            <ul class="nav nav-pills ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="javascript:void(0);" onclick="manageModal(0)"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Staff</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="toolbar">
+                            <button class="btn bg-gradient-warning mr-1" onclick="clearFilter()">
+                                <i class="fa fa-filter"></i> Clear Filter
+                            </button>
+                            @*<button id="remove" class="btn bg-gradient-danger mr-1" disabled>
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>*@
+
+                        </div>
+                        <table id="table"
+                               data-toolbar="#toolbar"
+                               data-filter-control="true"
+                               data-show-toggle="true"
+                               data-show-fullscreen="true"
+                               data-show-columns="true"
+                               data-show-columns-toggle-all="true"
+                               data-show-export="true"
+                               data-toggle="table"
+                               data-ajax="ajaxRequest"
+                               data-search="true"
+                               data-show-search-clear-button="true"
+                               data-click-to-select="true"
+                               data-side-pagination="server"
+                               data-pagination="true"
+                               data-pagination-pre-text="Previous"
+                               data-pagination-next-text="Next"
+                               data-export-types="['csv', 'excel', 'pdf']"
+                               data-page-list="[10, 25, 50, 100, 200, All]"
+                               data-page-size="10"
+                               data-id-field="userId"
+                               data-icons-prefix="fa"
+                               data-response-handler="responseHandler"
+                               data-loading-template="<i class='fa fa-spinner fa-spin fa-fw fa-2x'></i>">
+                            <thead>
+                                <tr>
+                                    @*<th data-checkbox="true"></th>*@
+                                    <th data-formatter="imageFormatter" data-width="20" data-align="center">Photo</th>
+                                    <th data-sortable="true" data-field="firstName" data-width="250" data-filter-control="input" data-filter-control-placeholder="Search here...">First Name</th>
+                                    <th data-sortable="true" data-field="lastName" data-width="250" data-filter-control="input" data-filter-control-placeholder="Search here...">Last Name</th>
+                                    <th data-sortable="true" data-field="emailAddress" data-width="250" data-filter-control="input" data-filter-control-placeholder="Search here...">Email</th>
+                                    @*<th data-sortable="true" data-field="dateOfBirth" data-formatter="dateOfBirthFormatter" data-width="250" data-filter-control="datepicker" data-filter-control-placeholder="-- Select Date --" data-filter-datepicker-options='{"autoclose":true, "clearBtn": true, "todayHighlight": true, "orientation": "top"}'>Date of Birth</th>*@
+                                    <th data-sortable="true" data-field="mobileNumber" data-width="200" data-filter-control="input" data-filter-control-placeholder="Search here...">Phone Number</th>
+                                    <th data-field="isActive" data-formatter="activeDeactiveFormatter" data-width="100" data-align="center" data-filter-control="select" data-filter-data="var:filterDefaults" data-filter-control-placeholder="All">Status</th>
+                                    <th data-formatter="operateFormatter" data-click-to-select="false" data-width="100" data-align="center">Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+</main>
+
+<!--Delete Modal-->
+@await Component.InvokeAsync("DeleteModalComponent")
+
+<!--Delete Multiple Modal-->
+@await Component.InvokeAsync("DeleteMultipleModalComponent") 
+
+<!--Add New Page Modal-->
+<div class="modal fade" id="modal-manage-staff" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title" id="manage-modal-title">Manage Staff</h4>
+                <button type="button" class="close" id="close-form" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="page-form-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="submit-form">Save</button>
+                <button type="button" class="btn btn-default" id="reset-form">Reset</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+@section scripts {
+    <script src="@LocalisationService.BaseUrl/scripts/admin/staff/staff.js?v=@DateTime.Now.Ticks" asp-append-version="true"></script>
+    <script>
+        var doc = new jsPDF();
+        var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        };
+
+        $('#cmd').click(function () {
+            doc.fromHTML($('#abc').html(), 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+            doc.save('SurveyReport.pdf');
+        });
+    </script>
+}

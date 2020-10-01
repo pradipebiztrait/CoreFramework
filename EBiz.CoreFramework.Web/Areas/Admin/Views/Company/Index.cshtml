@@ -1,0 +1,211 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.Company
+@{
+    ViewData["Title"] = "Company";
+    Layout = "_AdminLayout";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Company</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                    <li class="breadcrumb-item active">Company</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<main role="main" class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- /.card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Company Details</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <form method="post" id="form-model" autocomplete="off">
+                            <input type="hidden" asp-for="company_id" value="@Model.company_id" id="hidden_company_id" />
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label asp-for="company_name" class="control-label">Company Name<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <input asp-for="company_name" value="@Model.company_name" class="form-control" type="text" placeholder="Company Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="email_address" class="control-label">Email Address<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <input asp-for="email_address" value="@Model.email_address" class="form-control" type="text" placeholder="Email Address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="contact_number" class="control-label">Contact Number<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                </div>
+                                                <input asp-for="contact_number" value="@Model.contact_number" class="form-control" type="text" data-inputmask='"mask": "(999) 999-9999"' data-mask />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="whatsapp_number" class="control-label">Whatsapp Number</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fab fa-whatsapp" style="font-weight: 700;font-size: 20px;"></i></span>
+                                                </div>
+                                                <input asp-for="whatsapp_number" value="@Model.whatsapp_number" class="form-control" type="text" data-inputmask='"mask": "(999) 999-9999"' data-mask />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="address" class="control-label">Address<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <textarea asp-for="address" value="@Model.address" class="form-control" placeholder="Type company address here..." rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="country" class="control-label">Country<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <input asp-for="country" value="@Model.country" class="form-control" type="text" placeholder="Contry Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="state" class="control-label">State<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <input asp-for="state" value="@Model.state" class="form-control" type="text" placeholder="State Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="city" class="control-label">City<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <input asp-for="city" value="@Model.city" class="form-control" type="text" placeholder="City Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="pincode" class="control-label">Pincode<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <input asp-for="pincode" value="@Model.pincode" class="form-control" type="text" placeholder="Pincode" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="website_url" class="control-label">Website Link<span class="require_label">*</span></label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                                                </div>
+                                                <input asp-for="website_url" value="@Model.website_url" class="form-control" type="text" placeholder="Website Link" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="facebook_url" class="control-label">Facebook Link</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fab fa-facebook-f"></i></span>
+                                                </div>
+                                                <input asp-for="facebook_url" value="@Model.facebook_url" class="form-control" type="text" placeholder="Facebook Link" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="google_url" class="control-label">Google Plus Link</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fab fa-google-plus-g"></i></span>
+                                                </div>
+                                                <input asp-for="google_url" value="@Model.google_url" class="form-control" type="text" placeholder="Google Plus Link" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="twitter_url" class="control-label">Twitter Link</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+                                                </div>
+                                                <input asp-for="twitter_url" value="@Model.twitter_url" class="form-control" type="text" placeholder="Twitter Link" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="instagram_url" class="control-label">Instagram Link</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fab fa-instagram" style="font-weight: 700;font-size: 20px;"></i></span>
+                                                </div>
+                                                <input asp-for="instagram_url" value="@Model.instagram_url" class="form-control" type="text" placeholder="Instagram Link" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="youtube_url" class="control-label">Youtube Link</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fab fa-youtube"></i></span>
+                                                </div>
+                                                <input asp-for="youtube_url" value="@Model.youtube_url" class="form-control" type="text" placeholder="Youtube Link" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="company_logo" class="control-label">Company Logo</label>
+                                        <div class="avatar-upload mt-3">
+                                            <div class="avatar-edit">
+                                                <input type='file' asp-for="ImageFile" accept=".png, .jpg, .jpeg" />
+                                                <label for="ImageFile"><i class="fas fa-camera" style="padding: 13px;color: #495057;"></i></label>
+                                            </div>
+                                            @{
+                                                var imageUrl = (Model != null && !string.IsNullOrEmpty(Model.company_logo)) ? Model.company_logo : LocalisationService.BaseUrl + "/img/business-and-trade.svg";
+                                            }
+                                            <div class="avatar-preview">
+                                                <div id="image-preview" style="background-image: url(@imageUrl);">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="col-md-12 justify-content-end d-flex">
+                            <button type="button" class="btn btn-success" id="submit-form">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script src="@LocalisationService.BaseUrl/scripts/admin/company/company.js?v=@DateTime.Now.Ticks"></script>
+}
+

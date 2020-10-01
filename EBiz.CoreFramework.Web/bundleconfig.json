@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/scripts/admin/user/user.min.js",
+    "inputFiles": [
+      "wwwroot/scripts/admin/user/user.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/scripts/client/changepassword/change-password.js",
+    "inputFiles": [
+      "wwwroot/scripts/client/change-password.js"
+    ]
+  }
+]

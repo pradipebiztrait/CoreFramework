@@ -1,0 +1,59 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.ErrorModel
+@{
+    ViewData["Title"] = "Error";
+    Layout = "_AdminLayout";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                @*<h1 class="m-0 text-dark">Page not found</h1>*@
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                    <li class="breadcrumb-item active">Error 404</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<main role="main" class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- /.card -->
+                <div class="error-page">
+                    <h2 class="headline text-warning"> @Model.StatusCode</h2>
+                    <div class="error-content">
+                        <h3><i class="fas fa-exclamation-triangle text-warning"></i> @Model.ErrorTitle</h3>
+                        <p>
+                            @Model.ErrorMessage
+                            Meanwhile, you may <a href="/admin/dashboard">return to dashboard</a>.
+                        </p>
+                        @*<form class="search-form">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" placeholder="Search">
+                                    <div class="input-group-append">
+                                        <button type="submit" name="submit" class="btn btn-warning">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>*@
+                    </div>
+                    <!-- /.error-content -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+</main>
+
+@section scripts {}
+

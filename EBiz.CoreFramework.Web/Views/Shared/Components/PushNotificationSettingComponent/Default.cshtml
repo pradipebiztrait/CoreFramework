@@ -1,0 +1,116 @@
+﻿@model EBiz.CoreFramework.DataAccess.Models.SiteNotification
+
+<form method="post" id="form-notification" autocomplete="off">
+    <input type="hidden" asp-for="notification_id" value="@Model.notification_id" id="hidden_notification_id" />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label asp-for="iphone_key" class="control-label">iPhone Key<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fab fa-apple"></i></span>
+                        </div>
+                        <input asp-for="iphone_key" value="@Model.iphone_key" class="form-control" type="text" placeholder="iphone key" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label asp-for="android_key" class="control-label">Android Key<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fab fa-android"></i></span>
+                        </div>
+                        <input asp-for="android_key" value="@Model.android_key" class="form-control" type="text" placeholder="Android Key" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label asp-for="send_url" class="control-label">Send Url<span class="require_label">*</span></label>
+                <div class="form-group">
+                    <input asp-for="send_url" value="@Model.send_url" class="form-control" type="text" placeholder="Send Url" />
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <button type="button" class="btn btn-success wd-100" id="submit-notification">Save</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+<script>
+
+    notificationSettingsValidator();
+
+    $('#submit-notification').click(function () {
+        notificationSettingsValidator();
+        $('#form-notification').submit(function (ev) { ev.preventDefault(); });
+        $('#form-notification').data('bootstrapValidator').validate();
+        var isValid = $('#form-notification').data('bootstrapValidator').isValid();
+
+        if (isValid) {
+            var formData = new FormData();
+            var model = {
+                notification_id: $('#hidden_notification_id').val(),
+                iphone_key: $('#iphone_key').val(),
+                android_key: $('#android_key').val(),
+                send_url: $('#send_url').val()
+            };
+
+            formData.append("model", JSON.stringify(model));
+            formData.append("img", null);
+
+            $.ajax({
+                url: adminBaseUrl + "/Admin/Site/SavePushNotificationSettingsAsync",
+                type: "POST",
+                contentType: false,
+                data: formData,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response.status) {
+                        toastr.success(response.message);
+                        $('#emailsetting-card-body').load(adminBaseUrl + "/Admin/Site/PushNotificationSettingComponent");
+                    } else {
+                        toastr.error(response.message, "Error");
+                    }
+                    console.log(response);
+                }, error: function (jqXHR) {
+                    toastr.error(jqXHR.responseJSON.Message, "Error");
+                }
+            });
+        }
+    })
+
+    function notificationSettingsValidator() {
+        $('#form-notification').bootstrapValidator({
+            fields: {
+                iphone_key: {
+                    validators: {
+                        notEmpty: {
+                            message: 'iPhone Key is required.'
+                        }
+                    }
+                },
+                android_key: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Android Key is required.'
+                        }
+                    }
+                },
+                send_url: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Send Url is required.'
+                        },
+                        uri: {
+                            message: 'Invalid Send Url'
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>

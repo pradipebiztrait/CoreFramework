@@ -1,0 +1,29 @@
+﻿@if (TempData["ErrorMessage"] != null)
+{
+	<div class="alert alert-danger" role="alert">
+		<strong>Failed!</strong> @TempData["ErrorMessage"].ToString()
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+	<div class="alert alert-success" role="alert">
+		<strong>Success!</strong> @TempData["SuccessMessage"].ToString()
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+
+@if (TempData["WarningMessage"] != null)
+{
+	<div class="alert alert-warning" role="alert">
+		<strong>Success!</strong> @TempData["WarningMessage"].ToString()
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
